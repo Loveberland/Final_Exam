@@ -38,10 +38,14 @@ public class MainMenuFrame {
 
 	private void addBtn() {
 		btnPanel = new JPanel();
-		btnPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 50 ,0));
-		btnPanel.setLayout(new GridLayout(3, 3, 50, 50));
+		btnPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 250 ,0));
+		btnPanel.setLayout(new BoxLayout(btnPanel, BoxLayout.Y_AXIS));
+
+		btnPanel.add(Box.createVerticalGlue());
 		addPlayBtn();
+		btnPanel.add(Box.createVerticalStrut(30));
 		addSettingBtn();
+		btnPanel.add(Box.createVerticalGlue());
 		frame.add(btnPanel, BorderLayout.CENTER);
 	}
 
@@ -53,6 +57,7 @@ public class MainMenuFrame {
 			JButton playBtn = new JButton(nonHover);
 			playBtn.setFocusable(true);
 			playBtn.setPreferredSize(new Dimension(300, 100));
+			playBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 			transparentBtn(playBtn);
 
 			BtnHoverEff.applyHoverEff(playBtn, nonHover, hover);
@@ -71,6 +76,7 @@ public class MainMenuFrame {
 			JButton settingBtn = new JButton(nonHover);
 			settingBtn.setFocusable(true);
 			settingBtn.setPreferredSize(new Dimension(300, 100));
+			settingBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 			transparentBtn(settingBtn);
 
 			BtnHoverEff.applyHoverEff(settingBtn, nonHover, hover);

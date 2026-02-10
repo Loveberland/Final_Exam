@@ -1,8 +1,8 @@
-package com.Final_Exam.display;
+package Final_Exam.display;
 
 import javax.swing.*;
 import java.awt.*;
-import com.Final_Exam.display.BtnHoverEff;
+import Final_Exam.display.BtnHoverEff;
 
 public class MainMenuFrame {
 	JFrame frame;

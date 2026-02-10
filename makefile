@@ -7,7 +7,7 @@ RESOURCE_DIR = src/resources
 
 SOURCES = $(shell find $(SRC_DIR) -name "*.java")
 
-MAIN_CLASS = com.Final_Exam.Main
+MAIN_CLASS = Final_Exam.Main
 
 JFLAGS = -d $(BIN_DIR) -sourcepath $(SRC_DIR)
 

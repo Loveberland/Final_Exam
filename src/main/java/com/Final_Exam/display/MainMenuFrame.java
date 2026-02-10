@@ -2,6 +2,7 @@ package com.Final_Exam.display;
 
 import javax.swing.*;
 import java.awt.*;
+import com.Final_Exam.display.BtnHoverEff;
 
 public class MainMenuFrame {
 	JFrame frame;
@@ -46,11 +47,16 @@ public class MainMenuFrame {
 
 	private void addPlayBtn() {
 		try {
-			ImageIcon pic = new ImageIcon("src/resources/image/btnPlay.png");
-			JButton playBtn = new JButton(pic);
+			ImageIcon nonHover = new ImageIcon("src/resources/image/nonHoverBtnPlay.png");
+			ImageIcon hover = new ImageIcon("src/resources/image/hoverBtnPlay.png");
+
+			JButton playBtn = new JButton(nonHover);
 			playBtn.setFocusable(true);
 			playBtn.setPreferredSize(new Dimension(300, 100));
 			transparentBtn(playBtn);
+
+			BtnHoverEff.applyHoverEff(playBtn, nonHover, hover);
+
 			btnPanel.add(playBtn);
 		} catch (Exception e) {
 			notFoundPic();
@@ -59,11 +65,16 @@ public class MainMenuFrame {
 
 	private void addSettingBtn() {
 		try {
-			ImageIcon pic = new ImageIcon("src/resources/image/btnSetting.png");
-			JButton settingBtn = new JButton(pic);
+			ImageIcon nonHover = new ImageIcon("src/resources/image/nonHoverBtnSetting.png");
+			ImageIcon hover = new ImageIcon("src/resources/image/hoverBtnSetting.png");
+
+			JButton settingBtn = new JButton(nonHover);
 			settingBtn.setFocusable(true);
 			settingBtn.setPreferredSize(new Dimension(300, 100));
 			transparentBtn(settingBtn);
+
+			BtnHoverEff.applyHoverEff(settingBtn, nonHover, hover);
+
 			btnPanel.add(settingBtn);
 		} catch (Exception e) {
 			notFoundPic();

@@ -4,6 +4,7 @@ import Final_Exam.enums.ImagePath;
 import Final_Exam.utils.ErrHandle;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Factory class for creating button panels.
@@ -14,6 +15,8 @@ class GetBtn {
 	private static final int BOTTOM_PADDING = 250;
 	private static final int BUTTON_WIDTH = 300;
 	private static final int BUTTON_HEIGHT = 100;
+	private static final int SLIDER_WIDTH = 400;
+	private static final int SLIDER_HEIGHT = 50;
 
 	// Private constructor to prevent instantiation
 	private GetBtn() {
@@ -22,10 +25,10 @@ class GetBtn {
 
 	/**
 	 * Creates and returns the main menu panel with Play and Setting buttons.
-	 * 
+	 *
 	 * @return A JPanel configured as the menu.
 	 */
-	public static JPanel createMenuPanel() {
+	public static JPanel createMenuPanel(ActionListener onSettingClicked) {
 		JPanel panel = createBasePanel();
 
 		panel.add(Box.createVerticalGlue());
@@ -38,6 +41,7 @@ class GetBtn {
 
 		JButton settingBtn = createButton(ImagePath.SETTING_BTN_NORMAL, ImagePath.SETTING_BTN_HOVER);
 		if (settingBtn != null)
+			settingBtn.addActionListener(onSettingClicked);
 			panel.add(settingBtn);
 
 		panel.add(Box.createVerticalGlue());
@@ -47,12 +51,29 @@ class GetBtn {
 
 	/**
 	 * Creates and returns the settings panel.
-	 * 
+	 *
 	 * @return a JPanel configured for settings.
 	 */
-	public static JPanel createSettingPanel() {
+	public static JPanel createSettingPanel(ActionListener onBackClicked) {
 		JPanel panel = createBasePanel();
-		// Currently empty based on original code, but prepared for expansion
+
+		panel.add(Box.createVerticalGlue());
+
+		JSlider volume = createVolumeSlider();
+		if (volume != null) {
+			panel.add(volume);
+		}
+
+		panel.add(Box.createVerticalStrut(VERTICAL_GAP));
+
+		JButton backBtn = createButton(ImagePath.PLAY_BTN_NORMAL, ImagePath.PLAY_BTN_HOVER);
+		if (backBtn != null) {
+			backBtn.addActionListener(onBackClicked);
+			panel.add(backBtn);
+		}
+
+		panel.add(Box.createVerticalGlue());
+
 		return panel;
 	}
 
@@ -91,5 +112,17 @@ class GetBtn {
 		btn.setBorderPainted(false);
 		btn.setOpaque(false);
 		btn.setFocusPainted(false);
+	}
+
+	private static JSlider createVolumeSlider() {
+		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+		slider.setPreferredSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
+		slider.setAlignmentX(Component.CENTER_ALIGNMENT);
+		slider.setMajorTickSpacing(25);
+		slider.setMinorTickSpacing(5);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
+		slider.setOpaque(false);
+		return slider;
 	}
 }

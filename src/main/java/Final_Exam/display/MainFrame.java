@@ -1,7 +1,7 @@
 package Final_Exam.display;
 
 import Final_Exam.interfaces.DisplayComponent;
-
+import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,6 +16,8 @@ public class MainFrame {
 	private static final int WINDOW_HEIGHT = 960;
 
 	private JFrame frame;
+	private CardLayout cardLayout;
+	private JPanel mainContainer;
 
 	public MainFrame() {
 		initializeFrame();
@@ -37,7 +39,7 @@ public class MainFrame {
 
 	private void addComponents() {
 		addLogo();
-		addMenu();
+		initCardLayout();
 	}
 
 	private void addLogo() {
@@ -46,16 +48,23 @@ public class MainFrame {
 		frame.add(logoLabel, BorderLayout.NORTH);
 	}
 
-	private void addMenu() {
-		// GetBtn is a static factory now
-		JPanel menuPanel = GetBtn.createMenuPanel();
-		frame.add(menuPanel, BorderLayout.CENTER);
-	}
+	private void initCardLayout() {
+		cardLayout = new CardLayout();
+		mainContainer = new JPanel(cardLayout);
+		mainContainer.setOpaque(false);
 
-	// Kept for potential future use or if called externally (though private in
-	// original)
-	private void addSettings() {
-		JPanel settingPanel = GetBtn.createSettingPanel();
-		frame.add(settingPanel, BorderLayout.CENTER);
+		ActionListener switchToSetting = e -> cardLayout.show(mainContainer, "Setting");
+
+		ActionListener switchToMenu = e -> cardLayout.show(mainContainer, "Menu");
+
+		JPanel menuPanel = GetBtn.createMenuPanel(switchToSetting);
+		JPanel settingPanel = GetBtn.createSettingPanel(switchToMenu);
+
+		mainContainer.add(menuPanel, "Menu");
+		mainContainer.add(settingPanel, "Setting");
+
+		frame.add(mainContainer, BorderLayout.CENTER);
+
+		cardLayout.show(mainContainer, "Menu");
 	}
 }

@@ -1,9 +1,22 @@
 package Final_Exam.utils;
 
-import java.io.IOException;
-
+/**
+ * Utility class for handling errors in the application.
+ */
 public class ErrHandle {
-	public static void imgErr(Exception e) {
-		System.out.println("Error to load image: " + e.getMessage());
+
+	// Private constructor to prevent instantiation
+	private ErrHandle() {
+		throw new UnsupportedOperationException("Utility class cannot be instantiated");
+	}
+
+	/**
+	 * Handles exceptions related to image loading.
+	 *
+	 * @param e The exception that occurred.
+	 */
+	public static void handleImageLoadingError(Exception e) {
+		System.err.println("[ERROR] Failed to load image resource: " + e.getMessage());
+		e.printStackTrace();
 	}
 }

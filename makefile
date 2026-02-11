@@ -1,7 +1,7 @@
 JC = javac
 JVM = java
 
-SRC_DIR = src/main
+SRC_DIR = src/main/java
 BIN_DIR = bin
 RESOURCE_DIR = src/resources
 

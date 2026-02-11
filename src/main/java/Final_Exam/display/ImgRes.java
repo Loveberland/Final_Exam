@@ -1,9 +1,20 @@
 package Final_Exam.display;
 
-class ImgRes {
-	public static final String N_HOV_PLAY_BTN = "src/resources/image/nonHoverBtnPlay.png";
-	public static final String HOV_PLAY_BTN = "src/resources/image/hoverBtnPlay.png";
-	public static final String N_HOV_SETTING_BTN = "src/resources/image/nonHoverBtnSetting.png";
-	public static final String HOV_SETTING_BTN = "src/resources/image/hoverBtnSetting.png";
-	public static final String LOGO = "src/resources/image/Logo.png";
+import Final_Exam.enums.ImagePath;
+
+/**
+ * Utility class for managing image resources.
+ * This class primarily serves as a centralized point for accessing image paths
+ * defined in the ImagePath enum.
+ */
+public class ImgRes {
+
+	// Private constructor to prevent instantiation
+	private ImgRes() {
+		throw new UnsupportedOperationException("Utility class cannot be instantiated");
+	}
+
+	public static String getPath(ImagePath imagePath) {
+		return imagePath.getPath();
+	}
 }

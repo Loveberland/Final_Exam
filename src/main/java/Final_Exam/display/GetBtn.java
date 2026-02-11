@@ -1,78 +1,95 @@
 package Final_Exam.display;
 
+import Final_Exam.enums.ImagePath;
 import Final_Exam.utils.ErrHandle;
-import Final_Exam.display.BtnHovEff;
-import Final_Exam.display.ImgRes;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
+/**
+ * Factory class for creating button panels.
+ */
 class GetBtn {
-	private JPanel panel;
 
-	private void getMenuBtn() {
-		panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 250, 0));
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.add(Box.createVerticalGlue());
-		addPlayBtn();
-		panel.add(Box.createVerticalStrut(30));
-		addSettingBtn();
-		panel.add(Box.createVerticalGlue());
+	private static final int VERTICAL_GAP = 30;
+	private static final int BOTTOM_PADDING = 250;
+	private static final int BUTTON_WIDTH = 300;
+	private static final int BUTTON_HEIGHT = 100;
+
+	// Private constructor to prevent instantiation
+	private GetBtn() {
+		throw new UnsupportedOperationException("Utility class cannot be instantiated");
 	}
 
-	private void addPlayBtn() {
-		try {
-			ImageIcon playNor = new ImageIcon(ImgRes.N_HOV_PLAY_BTN);
-			ImageIcon playHov = new ImageIcon(ImgRes.HOV_PLAY_BTN);
-			JButton playBtn = new JButton(playNor);
-			playBtn.setFocusable(true);
-			playBtn.setPreferredSize(new Dimension(300, 100));
-			playBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-			transparent(playBtn);
-			BtnHovEff.applyHovEff(playBtn, playNor, playHov);
+	/**
+	 * Creates and returns the main menu panel with Play and Setting buttons.
+	 * 
+	 * @return A JPanel configured as the menu.
+	 */
+	public static JPanel createMenuPanel() {
+		JPanel panel = createBasePanel();
+
+		panel.add(Box.createVerticalGlue());
+
+		JButton playBtn = createButton(ImagePath.PLAY_BTN_NORMAL, ImagePath.PLAY_BTN_HOVER);
+		if (playBtn != null)
 			panel.add(playBtn);
-		} catch (Exception e) {
-			ErrHandle.imgErr(e);
-		}
-	}
 
-	private void addSettingBtn() {
-		try {
-			ImageIcon settingNor = new ImageIcon(ImgRes.N_HOV_SETTING_BTN);
-			ImageIcon settingHov = new ImageIcon(ImgRes.HOV_SETTING_BTN);
-			JButton settingBtn = new JButton(settingNor);
-			settingBtn.setFocusable(true);
-			settingBtn.setPreferredSize(new Dimension(300, 100));
-			settingBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-			transparent(settingBtn);
-			BtnHovEff.applyHovEff(settingBtn, settingNor, settingHov);
+		panel.add(Box.createVerticalStrut(VERTICAL_GAP));
+
+		JButton settingBtn = createButton(ImagePath.SETTING_BTN_NORMAL, ImagePath.SETTING_BTN_HOVER);
+		if (settingBtn != null)
 			panel.add(settingBtn);
+
+		panel.add(Box.createVerticalGlue());
+
+		return panel;
+	}
+
+	/**
+	 * Creates and returns the settings panel.
+	 * 
+	 * @return a JPanel configured for settings.
+	 */
+	public static JPanel createSettingPanel() {
+		JPanel panel = createBasePanel();
+		// Currently empty based on original code, but prepared for expansion
+		return panel;
+	}
+
+	private static JPanel createBasePanel() {
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createEmptyBorder(0, 0, BOTTOM_PADDING, 0));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setOpaque(false); // Assuming we want transparency for background
+		return panel;
+	}
+
+	private static JButton createButton(ImagePath normalImgPath, ImagePath hoverImgPath) {
+		try {
+			ImageIcon normalIcon = new ImageIcon(ImgRes.getPath(normalImgPath));
+			ImageIcon hoverIcon = new ImageIcon(ImgRes.getPath(hoverImgPath));
+
+			JButton btn = new JButton(normalIcon);
+			configureButtonAppearance(btn);
+
+			BtnHovEff.applyHoverEffect(btn, normalIcon, hoverIcon);
+
+			return btn;
 		} catch (Exception e) {
-			ErrHandle.imgErr(e);
+			ErrHandle.handleImageLoadingError(e);
+			return null;
 		}
 	}
 
-	private void getSettingBtn() {
+	private static void configureButtonAppearance(JButton btn) {
+		btn.setFocusable(true);
+		btn.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+		btn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-	}
-
-	private void transparent(JButton btn) {
+		// Transparent properties
 		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
 		btn.setOpaque(false);
 		btn.setFocusPainted(false);
-	}
-
-	public static JPanel getMenuPanel() {
-		GetBtn instance = new GetBtn();
-		instance.getMenuBtn();
-		return instance.panel;
-	}
-
-	public static JPanel getSettingPanel() {
-		GetBtn instance = new GetBtn();
-		instance.getSettingBtn();
-		return instance.panel;
 	}
 }

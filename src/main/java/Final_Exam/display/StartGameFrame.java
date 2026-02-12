@@ -1,14 +1,12 @@
 package Final_Exam.display;
 
-import Final_Exam.display.BackgroundPanel;
-import Final_Exam.enums.ImagePath;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
-public class StartGameFrame {
+class StartGameFrame {
+	private static JPanel panel;
 	public static JPanel createGamePanel() {
-		JPanel panel = new BackgroundPanel(ImagePath.EASTEREGG);
-		panel.setLayout(new BorderLayout());
+		panel = new JPanel();
 		return panel;
 	}
 }

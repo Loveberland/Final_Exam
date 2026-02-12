@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class BossRoom {
+public class WhenFight {
 	private static final int WIDTH = 1280;
 	private static final int HEIGHT = 960;
 

@@ -1,6 +1,7 @@
 package Final_Exam.display;
 
 import Final_Exam.enums.ImagePath;
+import Final_Exam.display.ImgRes;
 import Final_Exam.utils.ErrHandle;
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +16,8 @@ class GetBtn {
 	private static final int BOTTOM_PADDING = 250;
 	private static final int BUTTON_WIDTH = 300;
 	private static final int BUTTON_HEIGHT = 100;
-	private static final int SLIDER_WIDTH = 400;
-	private static final int SLIDER_HEIGHT = 50;
+	private static final int SLIDER_WIDTH = 300;
+	private static final int SLIDER_HEIGHT = 40;
 
 	// Private constructor to prevent instantiation
 	private GetBtn() {
@@ -28,21 +29,26 @@ class GetBtn {
 	 *
 	 * @return A JPanel configured as the menu.
 	 */
-	public static JPanel createMenuPanel(ActionListener onSettingClicked) {
+	public static JPanel createMenuPanel(ActionListener onSettingClicked, ActionListener onPlayClicked) {
 		JPanel panel = createBasePanel();
+
+		addLogoToPanel(panel);
 
 		panel.add(Box.createVerticalGlue());
 
 		JButton playBtn = createButton(ImagePath.PLAY_BTN_NORMAL, ImagePath.PLAY_BTN_HOVER);
-		if (playBtn != null)
+		if (playBtn != null) {
+			playBtn.addActionListener(onPlayClicked);
 			panel.add(playBtn);
+		}
 
 		panel.add(Box.createVerticalStrut(VERTICAL_GAP));
 
 		JButton settingBtn = createButton(ImagePath.SETTING_BTN_NORMAL, ImagePath.SETTING_BTN_HOVER);
-		if (settingBtn != null)
+		if (settingBtn != null) {
 			settingBtn.addActionListener(onSettingClicked);
 			panel.add(settingBtn);
+		}
 
 		panel.add(Box.createVerticalGlue());
 
@@ -57,7 +63,21 @@ class GetBtn {
 	public static JPanel createSettingPanel(ActionListener onBackClicked) {
 		JPanel panel = createBasePanel();
 
-		panel.add(Box.createVerticalGlue());
+		panel.add(Box.createVerticalStrut(-14));
+
+		addLogoToPanel(panel);
+
+		try {
+			String soundPath = ImgRes.getPath(ImagePath.SETTING_BTN_HOVER);
+			ImageIcon soundIcon = new ImageIcon(soundPath);
+			JLabel soundLabel = new JLabel(soundIcon);
+			soundLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+			panel.add(soundLabel);
+		} catch (Exception e) {
+			ErrHandle.handleImageLoadingError(e);
+		}
+
+		panel.add(Box.createVerticalStrut(10));
 
 		JSlider volume = createVolumeSlider();
 		if (volume != null) {
@@ -75,6 +95,13 @@ class GetBtn {
 		panel.add(Box.createVerticalGlue());
 
 		return panel;
+	}
+
+	private static void addLogoToPanel(JPanel panel) {
+		JLabel logo = Logo.createLogoLabel();
+		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panel.add(logo);
+		panel.add(Box.createVerticalStrut(20));
 	}
 
 	private static JPanel createBasePanel() {
@@ -117,6 +144,7 @@ class GetBtn {
 	private static JSlider createVolumeSlider() {
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
 		slider.setPreferredSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
+		slider.setMaximumSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
 		slider.setAlignmentX(Component.CENTER_ALIGNMENT);
 		slider.setMajorTickSpacing(25);
 		slider.setMinorTickSpacing(5);

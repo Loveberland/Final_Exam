@@ -38,7 +38,6 @@ public class MainFrame {
 	}
 
 	private void addComponents() {
-		addLogo();
 		initCardLayout();
 	}
 
@@ -53,15 +52,25 @@ public class MainFrame {
 		mainContainer = new JPanel(cardLayout);
 		mainContainer.setOpaque(false);
 
-		ActionListener switchToSetting = e -> cardLayout.show(mainContainer, "Setting");
+		ActionListener switchToSetting = e -> {
+			cardLayout.show(mainContainer, "Setting");
+		};
 
-		ActionListener switchToMenu = e -> cardLayout.show(mainContainer, "Menu");
+		ActionListener switchToMenu = e -> {
+			cardLayout.show(mainContainer, "Menu");
+		};
 
-		JPanel menuPanel = GetBtn.createMenuPanel(switchToSetting);
+		ActionListener switchToGame = e -> {
+			cardLayout.show(mainContainer, "Game");
+		};
+
+		JPanel menuPanel = GetBtn.createMenuPanel(switchToSetting, switchToGame);
 		JPanel settingPanel = GetBtn.createSettingPanel(switchToMenu);
+		JPanel gamePanel = StartGameFrame.createGamePanel();
 
 		mainContainer.add(menuPanel, "Menu");
 		mainContainer.add(settingPanel, "Setting");
+		mainContainer.add(gamePanel, "Game");
 
 		frame.add(mainContainer, BorderLayout.CENTER);
 

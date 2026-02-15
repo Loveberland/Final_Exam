@@ -66,7 +66,7 @@ public class MainFrame {
 
 		JPanel menuPanel = GetBtn.createMenuPanel(switchToSetting, switchToGame);
 		JPanel settingPanel = GetBtn.createSettingPanel(switchToMenu);
-		JPanel gamePanel = StartGameFrame.createGamePanel();
+		JPanel gamePanel = StoryGameFrame.createGamePanel();
 
 		mainContainer.add(menuPanel, "Menu");
 		mainContainer.add(settingPanel, "Setting");

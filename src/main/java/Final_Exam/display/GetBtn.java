@@ -68,7 +68,7 @@ class GetBtn {
 		addLogoToPanel(panel);
 
 		try {
-			String soundPath = ImgRes.getPath(ImagePath.SETTING_BTN_HOVER);
+			String soundPath = ImgRes.getPath(ImagePath.SOUND_HOVER);
 			ImageIcon soundIcon = new ImageIcon(soundPath);
 			JLabel soundLabel = new JLabel(soundIcon);
 			soundLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -86,7 +86,7 @@ class GetBtn {
 
 		panel.add(Box.createVerticalStrut(VERTICAL_GAP));
 
-		JButton backBtn = createButton(ImagePath.PLAY_BTN_NORMAL, ImagePath.PLAY_BTN_HOVER);
+		JButton backBtn = createButton(ImagePath.BACK_BTN_NORMAL, ImagePath.BACK_BTN_HOVER);
 		if (backBtn != null) {
 			backBtn.addActionListener(onBackClicked);
 			panel.add(backBtn);

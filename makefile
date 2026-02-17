@@ -1,5 +1,5 @@
 # Define the compiler and runtime
-JC = javac
+JC = javac -encoding UTF-8
 JVM = java
 
 # Main class entry point
@@ -41,7 +41,7 @@ else
 endif
 
 # Compiler flags
-JFLAGS = -d $(BIN_DIR) -sourcepath $(SRC_DIR)
+JFLAGS = -encoding UTF-8 -d $(BIN_DIR) -sourcepath $(SRC_DIR)
 
 # Default target
 all: build

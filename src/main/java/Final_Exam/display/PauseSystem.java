@@ -1,6 +1,9 @@
 package Final_Exam.display;
 
 import javax.swing.*;
+
+import Final_Exam.enums.ImagePath;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -11,35 +14,12 @@ class PauseSystem extends JPanel {
 		this.resumeAction = resumeAction;
 		this.setBounds(0, 0, wid, hei);
 		this.setOpaque(false);
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new BorderLayout());
 
-		this.add(Box.createVerticalGlue());
-
-		JLabel pauseLabel = new JLabel("GAME PAUSE");
-		pauseLabel.setFont(new Font("Arial", Font.BOLD, 60));
-		pauseLabel.setForeground(Color.WHITE);
-		pauseLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.add(pauseLabel);
-
-		JButton resumeBtn = createSimpleBtn("RESUME");
-		resumeBtn.addActionListener(e -> resumeGame());
-		this.add(resumeBtn);
-
-		this.add(Box.createVerticalGlue());
+		JLabel pauseLabel = ImgPanel.createImgLabel(ImagePath.PAUSE, 800, 300);
+		this.add(pauseLabel, BorderLayout.CENTER);
 
 		this.setVisible(false);
-	}
-
-	private JButton createSimpleBtn(String txt) {
-		JButton btn = new JButton(txt);
-		btn.setFont(new Font("Arial", Font.BOLD, 30));
-		btn.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btn.setFocusPainted(false);
-		btn.setBackground(Color.WHITE);
-		btn.setForeground(Color.BLACK);
-		btn.setPreferredSize(new Dimension(200, 60));
-		btn.setMaximumSize(new Dimension(200, 60));
-		return btn;
 	}
 
 	public void toggle() {

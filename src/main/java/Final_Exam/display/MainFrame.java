@@ -1,5 +1,6 @@
 package Final_Exam.display;
 
+import Final_Exam.enums.ImagePath;
 import Final_Exam.interfaces.DisplayComponent;
 import java.awt.event.*;
 import javax.swing.*;
@@ -39,12 +40,6 @@ public class MainFrame {
 
 	private void addComponents() {
 		initCardLayout();
-	}
-
-	private void addLogo() {
-		// Logo is a static factory now
-		JLabel logoLabel = Logo.createLogoLabel();
-		frame.add(logoLabel, BorderLayout.NORTH);
 	}
 
 	private void initCardLayout() {

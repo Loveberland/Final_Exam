@@ -10,7 +10,10 @@ public enum ImagePath {
 	BACK_BTN_NORMAL("src/resources/image/NonHovBack.png"),
 	BACK_BTN_HOVER("src/resources/image/HovBack.png"),
 	SOUND_HOVER("src/resources/image/HovSound.png"),
-	SOUND_NORMAL("src/resources/image/NonHovSound.png");
+	SOUND_NORMAL("src/resources/image/NonHovSound.png"),
+	PAUSE("src/resources/image/PAUSE.png"),
+	HERO("src/resources/image/Hero.png"),
+	SUN("src/resources/image/Sun.png");
 
     	private final String path;
 

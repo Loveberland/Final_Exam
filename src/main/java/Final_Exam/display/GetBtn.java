@@ -98,7 +98,7 @@ class GetBtn {
 	}
 
 	private static void addLogoToPanel(JPanel panel) {
-		JLabel logo = Logo.createLogoLabel();
+		JLabel logo = ImgPanel.createImgLabel(ImagePath.LOGO, 800, 300);
 		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(logo);
 		panel.add(Box.createVerticalStrut(20));
@@ -112,7 +112,7 @@ class GetBtn {
 		return panel;
 	}
 
-	private static JButton createButton(ImagePath normalImgPath, ImagePath hoverImgPath) {
+	public static JButton createButton(ImagePath normalImgPath, ImagePath hoverImgPath) {
 		try {
 			ImageIcon normalIcon = new ImageIcon(ImgRes.getPath(normalImgPath));
 			ImageIcon hoverIcon = new ImageIcon(ImgRes.getPath(hoverImgPath));

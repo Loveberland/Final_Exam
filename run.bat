@@ -25,7 +25,7 @@ goto build
     dir /s /b "%SRC_DIR%\*.java" > sources.txt
     
     REM Compile using the list
-    javac -d "%BIN_DIR%" -sourcepath "%SRC_DIR%" @sources.txt
+    javac -encoding UTF-8 -d "%BIN_DIR%" -sourcepath "%SRC_DIR%" @sources.txt
     
     REM Remove the temporary list
     del sources.txt

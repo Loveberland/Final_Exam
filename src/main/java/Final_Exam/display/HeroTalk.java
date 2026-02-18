@@ -29,7 +29,7 @@ class HeroTalk {
 		});
 
 		hero = ImgPanel.createImgLabel(ImagePath.HERO, 100, 300);
-		hero.setBounds(150, 200, 100, 300);
+		hero.setBounds(150, 200, 100, 400);
 		gameContentPanel.add(hero);
 
 		layeredPane.add(gameContentPanel, JLayeredPane.DEFAULT_LAYER);

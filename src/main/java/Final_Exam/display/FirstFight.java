@@ -31,12 +31,12 @@ public class FirstFight {
 		});
 
 		hero = ImgPanel.createImgLabel(ImagePath.HERO, 100, 300);
-		hero.setBounds(150, 200, 100, 300);
-		gameContentPanel.add(hero);
+		hero.setBounds(150, 200, 100, 400);
+		gameContentPanel.add(hero, BorderLayout.WEST);
 
                 boss = ImgPanel.createImgLabel(ImagePath.SUN, 100, 300);
-                boss.setBounds(1000, 200, 100, 300);
-                gameContentPanel.add(boss);
+                boss.setBounds(1000, 200, 100, 400);
+                gameContentPanel.add(boss, BorderLayout.EAST);
 
 		layeredPane.add(gameContentPanel, JLayeredPane.DEFAULT_LAYER);
 		layeredPane.add(pauseMenu, JLayeredPane.PALETTE_LAYER);

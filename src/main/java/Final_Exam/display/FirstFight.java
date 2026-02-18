@@ -77,10 +77,8 @@ public class FirstFight {
 					SwingUtilities.invokeLater(() -> {
 						if (!pauseMenu.isVisible()) {
 							Dialogues intro = new Dialogues(parentFrame, story, () -> {
-								// parentFrame.add(WhenFight.createGamePanel());
-
-                                                                parentFrame.revalidate();
-                                                                parentFrame.repaint();
+								layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
+								parentFrame.repaint();
 							});
 							intro.setVisible(true);
 						}

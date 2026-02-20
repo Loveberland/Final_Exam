@@ -1,7 +1,6 @@
 package Final_Exam.display;
 
 import Final_Exam.enums.ImagePath;
-import Final_Exam.interfaces.DisplayComponent;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,5 @@
 package Final_Exam.display;
 
-import Final_Exam.display.ImgRes;
 import Final_Exam.enums.ImagePath;
 import Final_Exam.utils.ErrHandle;
 import javax.swing.*;

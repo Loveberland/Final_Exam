@@ -3,7 +3,6 @@ package Final_Exam.display;
 import javax.swing.*;
 import java.awt.*;
 import Final_Exam.enums.ImagePath;
-import Final_Exam.display.ImgRes;
 import Final_Exam.utils.ErrHandle;
 
 class BackgroundPanel extends JPanel {

@@ -33,12 +33,14 @@ public class WhenFight {
 	}
 
 	public static void updateHeroHp(int hp) {
+		if (hp < 0) hp = 0;
 		if (hero != null) {
 			hero.updateHp(hp);
 		}
 	}
 
 	public static void updateBossHp(int hp) {
+		if (hp < 0) hp = 0;
 		if (boss != null) {
 			boss.updateHp(hp);
 		}

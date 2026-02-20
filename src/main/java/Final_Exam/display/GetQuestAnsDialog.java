@@ -1,6 +1,5 @@
 package Final_Exam.display;
 
-import Final_Exam.enums.ImagePath;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +11,7 @@ public class GetQuestAnsDialog extends JDialog{
         private final int HEIGHT = 600;
         private JTextField inputField;
 
-        public GetQuestAnsDialog(JFrame parentFrame, ImagePath imgPath, String correctAnswer, Nisit hero, Boss san) {
+        public GetQuestAnsDialog(JFrame parentFrame, String correctAnswer, JLabel questionLabel, Nisit hero, Boss san) {
                 super(parentFrame, "Answer the question...", true);
                 setSize(WIDTH, HEIGHT);
                 setLocationRelativeTo(parentFrame);
@@ -20,10 +19,8 @@ public class GetQuestAnsDialog extends JDialog{
                 setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
                 // Question
-                ImageIcon img = new ImageIcon(ImgRes.getPath(imgPath));
-                JLabel imgLabel = new JLabel(img);
-                imgLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                add(imgLabel, BorderLayout.CENTER);
+                questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                add(questionLabel, BorderLayout.CENTER);
 
                 // Answer
                 JPanel bottomPanel = new JPanel();
@@ -42,7 +39,7 @@ public class GetQuestAnsDialog extends JDialog{
                 submitButton.setPreferredSize(new Dimension(100, 40));
                 submitButton.addActionListener(e -> {
                         String userInput = inputField.getText().trim();
-                        if (userInput.equalsIgnoreCase(correctAnswer)) {
+                        if (userInput.toLowerCase().equalsIgnoreCase(correctAnswer)) {
                                 hero.atk(san);
                         } else {
                                 san.atk(hero);

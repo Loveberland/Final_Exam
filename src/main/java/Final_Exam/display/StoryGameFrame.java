@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import Final_Exam.enums.ImagePath;
+
 class StoryGameFrame {
 	private static JPanel gameContentPanel;
 	private static JLayeredPane layeredPane;
@@ -16,9 +18,18 @@ class StoryGameFrame {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(1280, 960));
 
-		gameContentPanel = new JPanel();
+		gameContentPanel = new JPanel(new BorderLayout()) {
+			private Image backgroundImage = new ImageIcon(ImgRes.getPath(ImagePath.BG)).getImage();
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if (backgroundImage != null) {
+					g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+				}
+			}
+		};
 		gameContentPanel.setLayout(null);
-		gameContentPanel.setBackground(Color.WHITE);
 		gameContentPanel.setBounds(0, 0, 1280, 960);
 
 		pauseMenu = new PauseSystem(1280, 960, e -> {
@@ -50,15 +61,15 @@ class StoryGameFrame {
 
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
-			"ในวันเปิดภาคเรียน นักศึกษาหนุ่มคนหนึ่งก้าวเข้าสู่มหาวิทยาลัยชั้นนำของประเทศ สถานที่ซึ่งขึ้นชื่อว่า \"สร้างอัจฉริยะ\" และ \"กลืนกินคนอ่อนแอ\"\n" +
-			"ไปพร้อมกัน เขาเลือกสาขาวิชาที่ไม่มีอยู่ในหลักสูตรทั่วไป สาขาที่ถูกระบุไว้เพียงว่า “สาขาวิชาพิเศษ” โดยไม่มีคำอธิบายใดเพิ่มเติม",
-			"ทันทีที่ประตูมหาวิทยาลัยปิดลง ม่านหมอกพิษสีหม่นก็แผ่ ขยายออกมา กลืนกินโลกภายนอกจนไม่เหลือแม้แต่สัญญาณการสื่อสาร ผู้ที่พยายาม\n" +
-			"หลบหนี ล้มตาย ผู้ที่พยายามต่อต้าน หายสาบสูญ และผู้ที่ยอมจำนน... ค่อย ๆ สูญเสียความเป็นมนุษย์ นักศึกษาค้นพบความจริงอันโหดร้าย",
-			"ที่นี่ไม่ใช่สถานศึกษา แต่คือสนามทดลอง ความรู้ไม่ใช่เครื่องมือเพื่อพัฒนา แต่คือ อาวุธ เกรดไม่ใช่ตัวชี้วัดความ สามารถ แต่คือ เส้นแบ่งระหว่างชีวิตและความตาย",
-			"เหนือมหาวิทยาลัยแห่งนี้ มี \"ผู้ปกครอง\" ปกครองอยู่ แต่ละคนครอบครองศาสตร์ ต้องห้าม แข็งแกร่งเกินกว่านักศึกษาจะต่อต้านได้ พวกเขา" +
-			"ควบคุมหลักสูตร บิดเบือนความ จริง และคัดเลือกเฉพาะผู้ที่ \"เหมาะสมจะรอด\"",
-			"ท่ามกลางความสิ้นหวัง มีตำนานต้องห้ามถูกกระซิบต่อกันในหมู่นักศึกษาเงามืด \"หากผู้ใดมีจิตใจที่ไม่แตกสลาย มีสติปัญญาที่ไม่ยอมศิโรราบ" +
-			"และสามารถโค่นล้มผู้ ปกครองทั้งหมดลงได้ ม่านหมอกจะจางหาย และประตูสู่โลกภายนอกจะเปิดอีกครั้ง\""
+			"On the first day of the semester, a young male student stepped into one of the country\'s top universities, a place known to \"create geniuses\" and \"swallow the weak.\"\n" +
+			"At the same time, he chose a major that didn't exist in the regular curriculum, a field listed only as \"Special Program,\" with no further explanation.",
+			"The moment the university gates closed, a murky toxic fog spread outward, swallowing the outside world until not even a single communication signal remained. Those who tried\n" +
+			"Those who tried to escape fell and died. Those who tried to resist disappeared. And those who surrendered... slowly lost their humanity. The student uncovered a cruel truth",
+			"This was not an educational institution, but an experimental ground. Knowledge was not a tool for growth, but a weapon. Grades were not a measure of ability, but the line between life and death",
+			"Above this university, the \"Overseers\" ruled. Each of them wielded forbidden disciplines, far too powerful for any student to oppose. They" +
+			"They controlled the curriculum, distorted the truth, and selected only those who were \"fit to survive.\"\n",
+			"Amid the despair, a forbidden legend was whispered among the shadowed students: \"If anyone possesses a heart that does not shatter, and an intellect that refuses to bow\n" +
+			"and can bring down all the Overseers, the fog will fade, and the gates to the outside world will open once more\"\n"
 		};
 
 		panel.addAncestorListener(new AncestorListener() {

@@ -13,7 +13,8 @@ public enum ImagePath {
 	SOUND_NORMAL("src/resources/image/NonHovSound.png"),
 	PAUSE("src/resources/image/PAUSE.png"),
 	HERO("src/resources/image/Hero.png"),
-	SUN("src/resources/image/Sun.png");
+	SUN("src/resources/image/Sun.png"),
+	BG("src/resources/image/bg.png");
 
     	private final String path;
 

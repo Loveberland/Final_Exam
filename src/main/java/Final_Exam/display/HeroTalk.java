@@ -19,9 +19,18 @@ class HeroTalk {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(1280, 960));
 
-		gameContentPanel = new JPanel();
+		gameContentPanel = new JPanel() {
+			private Image backgroundImage = new ImageIcon(ImgRes.getPath(ImagePath.BG)).getImage();
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if (backgroundImage != null) {
+					g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+				}
+			}
+		};
 		gameContentPanel.setLayout(null);
-		gameContentPanel.setBackground(Color.WHITE);
 		gameContentPanel.setBounds(0, 0, 1280, 960);
 
 		pauseMenu = new PauseSystem(1280, 960, e -> {
@@ -29,7 +38,7 @@ class HeroTalk {
 		});
 
 		hero = ImgPanel.createImgLabel(ImagePath.HERO, 100, 300);
-		hero.setBounds(150, 200, 100, 400);
+		hero.setBounds(150, 200, 500, 400);
 		gameContentPanel.add(hero);
 
 		layeredPane.add(gameContentPanel, JLayeredPane.DEFAULT_LAYER);

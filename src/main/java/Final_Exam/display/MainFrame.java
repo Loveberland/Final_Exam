@@ -67,7 +67,22 @@ public class MainFrame {
 		mainContainer.add(settingPanel, "Setting");
 		mainContainer.add(gamePanel, "Game");
 
-		frame.add(mainContainer, BorderLayout.CENTER);
+		// Add background path
+		JPanel bgPanel = new JPanel(new BorderLayout()) {
+			private Image backgroundImage = new ImageIcon(ImgRes.getPath(ImagePath.BG)).getImage();
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if (backgroundImage != null) {
+					g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+				}
+			}
+		};
+
+		bgPanel.add(mainContainer, BorderLayout.CENTER);
+
+		frame.add(bgPanel, BorderLayout.CENTER);
 
 		cardLayout.show(mainContainer, "Menu");
 	}

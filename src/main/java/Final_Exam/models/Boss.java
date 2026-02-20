@@ -1,15 +1,12 @@
 package Final_Exam.models;
 
-import java.util.Random;
+public class Boss extends Character {
+        public Boss(String name) {
+                super(name, 250);
+        }
 
-public class Boss extends GameCharacter {
-	public Boss(String name) {
-		super(name, 250);
-	}
-
-	public void atk(GameCharacter target) {
-		if (!IsCorrect.isCorrect) {
-			target.hp -= (int)(Math.random() * (50 - 20 + 1)) + 20;
-		}
-	}
+        @Override
+        public void atk(Character target) {
+                target.takeDmg(dmg.nextInt((50 - 25) + 1) + 25);   // dmg 25 - 50
+        }
 }

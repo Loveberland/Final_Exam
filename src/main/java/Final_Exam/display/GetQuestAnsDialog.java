@@ -4,12 +4,15 @@ import Final_Exam.enums.ImagePath;
 import javax.swing.*;
 import java.awt.*;
 
+import Final_Exam.models.Boss;
+import Final_Exam.models.Nisit;
+
 public class GetQuestAnsDialog extends JDialog{
         private final int WIDTH = 500;
         private final int HEIGHT = 600;
         private JTextField inputField;
 
-        public GetQuestAnsDialog(JFrame parentFrame, ImagePath imgPath, String correctAnswer) {
+        public GetQuestAnsDialog(JFrame parentFrame, ImagePath imgPath, String correctAnswer, Nisit hero, Boss san) {
                 super(parentFrame, "Answer the question...", true);
                 setSize(WIDTH, HEIGHT);
                 setLocationRelativeTo(parentFrame);
@@ -40,10 +43,14 @@ public class GetQuestAnsDialog extends JDialog{
                 submitButton.addActionListener(e -> {
                         String userInput = inputField.getText().trim();
                         if (userInput.equalsIgnoreCase(correctAnswer)) {
-                                System.out.println("Correct Answer!");
+                                hero.atk(san);
                         } else {
-                                System.out.println("Wrong Answer!");
+                                san.atk(hero);
                         }
+                        WhenFight.updateHeroHp(hero.getHp());
+                        WhenFight.updateBossHp(san.getHp());
+                        System.out.println("Hero hp: " + hero.getHp());
+                        System.out.println("San hp: " + san.getHp());
                         dispose();
                 });
                 bottomPanel.add(submitButton, BorderLayout.SOUTH);

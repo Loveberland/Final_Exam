@@ -31,4 +31,16 @@ public class WhenFight {
 
 		return hpBarPanel;
 	}
+
+	public static void updateHeroHp(int hp) {
+		if (hero != null) {
+			hero.updateHp(hp);
+		}
+	}
+
+	public static void updateBossHp(int hp) {
+		if (boss != null) {
+			boss.updateHp(hp);
+		}
+	}
 }

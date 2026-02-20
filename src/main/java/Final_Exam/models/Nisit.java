@@ -1,21 +1,12 @@
 package Final_Exam.models;
 
-public class Nisit extends GameCharacter {
-	private Weapon curWeapon;
+public class Nisit extends Character {
+        public Nisit() {
+                super("Kittipong", 100);
+        }
 
-	public Nisit(String name) {
-		super(name, 100);
-	}
-
-	public void equip(Weapon newWeapon) {
-		this.curWeapon = newWeapon;
-	}
-
-	public void atk(GameCharacter target) {
-		if (IsCorrect.isCorrect) {
-			if (curWeapon.tryToHit()) {
-				target.hp -= curWeapon.getDmg();
-			}
-		}
-	}
+        @Override
+        public void atk(Character target) {
+                target.takeDmg(dmg.nextInt((75 - 25) + 1) + 25);   // Dmg 25 - 75
+        }
 }

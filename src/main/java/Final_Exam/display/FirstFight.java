@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import Final_Exam.enums.ImagePath;
+import Final_Exam.models.Boss;
+import Final_Exam.models.Nisit;
 
 public class FirstFight {
 	private static JPanel gameContentPanel;
@@ -21,9 +23,18 @@ public class FirstFight {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(1280, 960));
 
-		gameContentPanel = new JPanel();
+		gameContentPanel = new JPanel() {
+			private Image backgroundImage = new ImageIcon(ImgRes.getPath(ImagePath.BG)).getImage();
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if (backgroundImage != null) {
+					g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+				}
+			}
+		};
 		gameContentPanel.setLayout(null);
-		gameContentPanel.setBackground(Color.WHITE);
 		gameContentPanel.setBounds(0, 0, 1280, 960);
 
 		pauseMenu = new PauseSystem(1280, 960, e -> {
@@ -31,11 +42,11 @@ public class FirstFight {
 		});
 
 		hero = ImgPanel.createImgLabel(ImagePath.HERO, 100, 300);
-		hero.setBounds(150, 200, 100, 400);
+		hero.setBounds(150, 200, 500, 400);
 		gameContentPanel.add(hero, BorderLayout.WEST);
 
                 boss = ImgPanel.createImgLabel(ImagePath.SUN, 100, 300);
-                boss.setBounds(1000, 200, 100, 400);
+                boss.setBounds(800, 200, 100, 400);
                 gameContentPanel.add(boss, BorderLayout.EAST);
 
 		layeredPane.add(gameContentPanel, JLayeredPane.DEFAULT_LAYER);
@@ -99,7 +110,10 @@ public class FirstFight {
 		layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
 		parentFrame.repaint();
 
-		GetQuestAnsDialog firstQuestion = new GetQuestAnsDialog(parentFrame, ImagePath.LOGO, "Boot Boot");
+		Nisit hero = new Nisit();
+		Boss san = new Boss("Santana");
+
+		GetQuestAnsDialog firstQuestion = new GetQuestAnsDialog(parentFrame, ImagePath.LOGO, "Boot Boot", hero, san);
 		firstQuestion.setVisible(true);
 	}
 }

@@ -77,8 +77,7 @@ public class FirstFight {
 					SwingUtilities.invokeLater(() -> {
 						if (!pauseMenu.isVisible()) {
 							Dialogues intro = new Dialogues(parentFrame, story, () -> {
-								layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
-								parentFrame.repaint();
+								fight(parentFrame);
 							});
 							intro.setVisible(true);
 						}
@@ -94,5 +93,13 @@ public class FirstFight {
 			public void ancestorMoved(AncestorEvent event) {}
 
 		});
+	}
+
+	private static void fight(JFrame parentFrame) {
+		layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
+		parentFrame.repaint();
+
+		GetQuestAnsDialog firstQuestion = new GetQuestAnsDialog(parentFrame, ImagePath.LOGO, "Boot Boot");
+		firstQuestion.setVisible(true);
 	}
 }

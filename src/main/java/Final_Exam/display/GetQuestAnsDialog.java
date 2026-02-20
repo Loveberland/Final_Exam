@@ -37,7 +37,20 @@ public class GetQuestAnsDialog extends JDialog{
 
                 JButton submitButton = new JButton("Submit");
                 submitButton.setPreferredSize(new Dimension(100, 40));
-                submitButton.addActionListener(e -> {
+               
+		int timeLimit = 180000;
+		Timer timeoutTimer = new Timer(timeLimit, e -> {
+			System.out.println("Time's up!");	
+			san.atk(hero);	
+			WhenFight.updateHeroHp(hero.getHp());
+    			WhenFight.updateBossHp(san.getHp());
+    			System.out.println("Hero hp: " + hero.getHp());
+    			System.out.println("San hp: " + san.getHp());
+    			dispose();
+		}); 
+		timeoutTimer.setRepeats(false);
+		timeoutTimer.start();
+		submitButton.addActionListener(e -> {
                         String userInput = inputField.getText().trim();
                         if (userInput.toLowerCase().equalsIgnoreCase(correctAnswer)) {
                                 hero.atk(san);

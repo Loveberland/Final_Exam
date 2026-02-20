@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import Final_Exam.enums.ImagePath;
+import Final_Exam.enums.FirstQuestion;
 import Final_Exam.models.Boss;
 import Final_Exam.models.Nisit;
 
@@ -114,68 +115,17 @@ public class FirstFight {
 		Boss san = new Boss("Santana");
 
 		// 1
-		JLabel fisrtQuestionLabel = new JLabel("<html>" +
-                                                        "<div style='text-align: center;'>" +
-                                                        "what is this search ? <br>You can answer in either uppercase or lowercase letters.<br>" +
-                                                        "If the answer contains a space, use _ instead (for example: Number_One).<br><br>" +
-                                                        "</div>" +
-                                                        "<pre>" +
-                                                        "static boolean Search(Tree head, int n) {\n" +
-                                                        "    if (head == null) return false;\n" +
-                                                        "    if (head.data == n) return true;\n" +
-                                                        "    return DFS(head.left, n) || DFS(head.right, n);\n" +
-                                                        "}" +
-                                                        "</pre>" +
-                                                        "</html>"
-                );
+		JLabel fisrtQuestionLabel = new JLabel(FirstQuestion.DFS_Q.getQuestionHtml());
 		GetQuestAnsDialog firstQuestion = new GetQuestAnsDialog(parentFrame, "depth_first_search", fisrtQuestionLabel, hero, san);
 		firstQuestion.setVisible(true);
 
 		// 2
-		JLabel secondQuestionLabel = new JLabel("<html>" +
-							"<div style='text-align: center;'>" +
-                                                        "what is this search ? <br>You can answer in either uppercase or lowercase letters.<br>" +
-                                                        "If the answer contains a space, use _ instead (for example: Number_One).<br><br>" +
-                                                        "</div>" +
-							"<pre>" +
-							"public int search(int left, int right, int n) {\n" +
-							"    if (left &gt; right) return -1;\n" +
-							"    int mid = left + (right - left) / 2;\n" +
-							"    if (this.arr[mid] == n) return mid;\n" +
-							"    if (this.arr[mid] &gt; n) return search(left, mid - 1, n);\n" +
-							"    return search(mid + 1, right, n);\n" +
-							"}\n\n" +
-							"public int search(int n) {\n" +
-							"    int left = 0;\n" +
-							"    int right = this.arr.length - 1;\n" +
-							"    return search(left, right, n);\n" +
-							"}" +
-							"</pre>" +
-							"</html>"
-		);
+		JLabel secondQuestionLabel = new JLabel(FirstQuestion.BINARY_SEARCH_Q.getQuestionHtml());
 		GetQuestAnsDialog secondQuestion = new GetQuestAnsDialog(parentFrame, "binary_search", secondQuestionLabel, hero, san);
 		secondQuestion.setVisible(true);
 
 		// 3
-		JLabel thridQuestionLabel = new JLabel("<html>" +
-							"<div style='text-align: center;'>" +
-                                                        "what is this sort ? <br>You can answer in either uppercase or lowercase letters.<br>" +
-                                                        "If the answer contains a space, use _ instead (for example: Number_One).<br><br>" +
-                                                        "</div>" +
-							"<pre>" +
-							"for (int i = 1; i &lt; 10000; i++) {\n" +
-							"    int j = i;\n" +
-							"    while (j - 1 &gt;= 0 &amp;&amp; number[j] &lt; number[j - 1]) {\n" +
-							"        number[j - 1] += number[j];\n" +
-							"        number[j] = number[j - 1] - number[j];\n" +
-							"        number[j - 1] -= number[j];\n" +
-							"        j--;\n" +
-							"    }\n" +
-							"}" +
-							"</pre>" +
-							"</html>"
-
-		);
+		JLabel thridQuestionLabel = new JLabel(FirstQuestion.INSERTION_SORT_Q.getQuestionHtml());
 		GetQuestAnsDialog thirdQuestion = new GetQuestAnsDialog(parentFrame, "insertion_sort", thridQuestionLabel, hero, san);
 		thirdQuestion.setVisible(true);
 	}

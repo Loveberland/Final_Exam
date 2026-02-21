@@ -128,5 +128,34 @@ public class FirstFight {
 		JLabel thridQuestionLabel = new JLabel(FirstQuestion.INSERTION_SORT_Q.getQuestionHtml());
 		GetQuestAnsDialog thirdQuestion = new GetQuestAnsDialog(parentFrame, "insertion_sort", thridQuestionLabel, hero, san);
 		thirdQuestion.setVisible(true);
+
+		// 4
+		JLabel fourthQuestionLabel = new JLabel(FirstQuestion.MERGE_SORT_Q.getQuestionHtml());
+		GetQuestAnsDialog fourthQuestion = new GetQuestAnsDialog(parentFrame, "merge_sort", fourthQuestionLabel, hero, san);
+		fourthQuestion.setVisible(true);
+
+		// 5
+		JLabel fifthQuestionLabel = new JLabel(FirstQuestion.SELECTION_SORT.getQuestionHtml());
+		GetQuestAnsDialog fifthQuestion = new GetQuestAnsDialog(parentFrame, "selection_sort", fifthQuestionLabel, hero, san);
+		fifthQuestion.setVisible(true);
+
+		// 6
+		JLabel sixthQuestionLabel = new JLabel(FirstQuestion.BUBBLE_SORT.getQuestionHtml());
+		GetQuestAnsDialog sixthQuestion = new GetQuestAnsDialog(parentFrame, "bubble_sort", sixthQuestionLabel, hero, san);
+		sixthQuestion.setVisible(true);
+
+		// 7
+		JLabel seventhQuestionLabel = new JLabel(FirstQuestion.QUICK_SORT.getQuestionHtml());
+		GetQuestAnsDialog seventhQuestion = new GetQuestAnsDialog(parentFrame, "quick_sort", seventhQuestionLabel, hero, san);
+		seventhQuestion.setVisible(true);
+
+		// 8
+		JLabel eigthQuestionLabel = new JLabel(FirstQuestion.BREADTH_FIRST_SEARCH.getQuestionHtml());
+		GetQuestAnsDialog eigthQuestion = new GetQuestAnsDialog(parentFrame, "breadth_first_search", eigthQuestionLabel, hero, san);
+		eigthQuestion.setVisible(true);
+
+		// 9
+
+		// 10
 	}
 }

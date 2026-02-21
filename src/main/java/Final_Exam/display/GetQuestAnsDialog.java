@@ -20,7 +20,11 @@ public class GetQuestAnsDialog extends JDialog{
 
                 // Question
                 questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                add(questionLabel, BorderLayout.CENTER);
+                JScrollPane scrollPane = new JScrollPane(questionLabel);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Adds a little breathing room
+                add(scrollPane, BorderLayout.CENTER);
 
                 // Answer
                 JPanel bottomPanel = new JPanel();

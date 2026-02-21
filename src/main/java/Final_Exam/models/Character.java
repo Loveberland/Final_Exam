@@ -16,7 +16,10 @@ abstract public class Character {
 
         public abstract void atk(Character target);
 
-        public void takeDmg(int dmg) { hp -= dmg; }
+        public void takeDmg(int dmg) {
+		hp -= dmg;
+		if (hp < 0) hp = 0;
+	}
 
         public boolean isAlive() { return hp > 0;}
 

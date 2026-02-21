@@ -36,7 +36,7 @@ public class FirstFight {
 			}
 		};
 		gameContentPanel.setLayout(null);
-		gameContentPanel.setBounds(0, 0, 1280, 960);
+		gameContentPanel.setBounds(-1, 0, 1280, 960);
 
 		pauseMenu = new PauseSystem(1280, 960, e -> {
 			System.out.println("Game Resume");
@@ -91,8 +91,7 @@ public class FirstFight {
 							Dialogues intro = new Dialogues(parentFrame, story, () -> {
 								fight(parentFrame);
 							});
-							intro.setVisible(true);
-						}
+							intro.setVisible(true); }
 					});
 				}
 
@@ -155,7 +154,8 @@ public class FirstFight {
 		eigthQuestion.setVisible(true);
 
 		// 9
-
-		// 10
+		JLabel ninthQuestionLabel = new JLabel(FirstQuestion.LINEAR_SEARCH.getQuestionHtml());
+		GetQuestAnsDialog ninthQuestion = new GetQuestAnsDialog(parentFrame, "linear_search", ninthQuestionLabel, hero, san);
+		ninthQuestion.setVisible(true);	
 	}
 }

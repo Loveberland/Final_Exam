@@ -3,8 +3,7 @@ package Final_Exam.enums;
 public enum FirstQuestion {
 	DFS_Q(
 		"<html>" +
-        	"<div style='text-align: center;'>" +
-        	"what is this search ? <br>You can answer in either uppercase or lowercase letters.<br>" +
+        	"<div style='text-align: center;'>" + "what is this search ? <br>You can answer in either uppercase or lowercase letters.<br>" +
 	        "If the answer contains a space, use _ instead (for example: Number_One).<br><br>" +
         	"</div>" +
 	        "<pre>" +
@@ -213,6 +212,22 @@ public enum FirstQuestion {
 		"}" +
 		"</pre>" +
 		"</html>"
+	),
+	LINEAR_SEARCH(
+		"<html>" +
+		"<div style='text-align: center;'>" +
+		"What is this search ? <br>You can answer in either uppercase or lowercase letters.<br>" +
+		"If the answer contains a space, use _ instead (for example: Number_One).<br><br>" +	
+		"</div>" +
+		"<pre>" +
+		"public static int mystery(int[] arr, int target) {\n" +
+			"for (int i = 0; i < arr.length; i++) {\n" +
+				"if (arr[i] == target) return i;\n" +
+			"}\n" +
+			"return -1;\n" +	
+		"}\n" +
+		"</pre>" +
+		"</html>"	
 	);
 
 	private final String questionHtml;

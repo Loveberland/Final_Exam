@@ -2,6 +2,7 @@ package Final_Exam.display;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 import Final_Exam.models.Boss;
 import Final_Exam.models.Nisit;
@@ -42,8 +43,9 @@ public class GetQuestAnsDialog extends JDialog{
                 JButton submitButton = new JButton("Submit");
                 submitButton.setPreferredSize(new Dimension(100, 40));
                
-		int timeLimit = 180000;
-		Timer timeoutTimer = new Timer(timeLimit, e -> {
+		Random randTime = new Random();
+		int finalTime = randTime.nextInt((180000 - 60000) + 1) + 60000;
+		Timer timeoutTimer = new Timer(finalTime, e -> {
 			System.out.println("Time's up!");	
 			san.atk(hero);	
 			WhenFight.updateHeroHp(hero.getHp());

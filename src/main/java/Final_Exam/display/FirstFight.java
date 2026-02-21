@@ -1,8 +1,5 @@
 package Final_Exam.display;
 
-import Final_Exam.display.*;
-import Final_Exam.display.QuestionBank;
-
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -81,8 +78,9 @@ public class FirstFight {
 
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
-                        "Well Well Well...",
-                        "Let see what you have...",
+                        "You\'ve made it this far… how interesting. Hundreds of students fell before they ever saw my face. No matter how strong we think we are… in the end, everyone breaks. And I will be your final lesson.",
+			"How bold of you to walk up to me without kneeling. Do you think you\'re some kind of guardian? There are no guardians here—only survivors… and the erased.",
+			"Remember this well: after today, your name will be nothing but a zero. And I will be your final lesson."
 		};
 
 		panel.addAncestorListener(new AncestorListener() {
@@ -122,7 +120,7 @@ public class FirstFight {
 
 		List<Question> questions = QuestionBank.getAllQuestions();
 
-		Collections.shuffle(questions); // ⭐ สุ่มข้อสอบ
+		Collections.shuffle(questions); 
 
 		for (Question q : questions) {
 
@@ -142,10 +140,11 @@ public class FirstFight {
 			if (hero.getHp() <= 0 || san.getHp() <= 0)
 				break;
 		}
+		checkDie(hero, san, parentFrame);
 	}
 
 	private static void checkDie(Nisit hero, Boss san, JFrame parentFrame) {
-		if (hero.getHp() < 0) new Ending(hero, parentFrame);
-		else if (san.getHp() < 0) new Ending(san, parentFrame);
+		if (hero.getHp() <= 0) new Ending(san, parentFrame);
+		else if (san.getHp() <= 0) new Ending(hero, parentFrame);
 	}
 }

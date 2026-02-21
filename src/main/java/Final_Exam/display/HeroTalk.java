@@ -66,8 +66,11 @@ class HeroTalk {
 
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
-                        "Nahs i need to do this shit right now!!",
-                        "Fuck...",
+                        "If this place is an experiment, then I\'ll be your mistake",
+                        "You use knowledge as a weapon, but I\'ll use it as a tool in this hell.",
+			"Grades might decide whether others live or die, but they will never decide my life.",
+			"If surviving means losing my humanity, then I choose to fight."
+
 		};
 
 		panel.addAncestorListener(new AncestorListener() {

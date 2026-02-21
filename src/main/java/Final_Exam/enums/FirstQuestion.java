@@ -10,7 +10,7 @@ public enum FirstQuestion {
         	"static boolean Search(Tree head, int n) {\n" +
         	"	if (head == null) return false;\n" +
         	"	if (head.data == n) return true;\n" +
-        	"    	return DFS(head.left, n) || DFS(head.right, n);\n" +
+        	"    	return Search(head.left, n) || Search(head.right, n);\n" +
         	"}" +
         	"</pre>" +
         	"</html>"
@@ -69,10 +69,10 @@ public enum FirstQuestion {
 		"    	}\n" +
 		"    	public static void sort(int[] array, int left, int right) {\n" +
 		"        	if (left &lt; right) {\n" +
-		"            	int middle = left + (right - left) / 2;\n" +
-		"            	sort(array, left, middle);\n" +
-		"            	sort(array, middle + 1, right);\n" +
-		"            	subSort(array, left, middle, right);\n" +
+		"            		int middle = left + (right - left) / 2;\n" +
+		"            		sort(array, left, middle);\n" +
+		"            		sort(array, middle + 1, right);\n" +
+		"            		subSort(array, left, middle, right);\n" +
 		"        	}\n" +
 		"    	}\n" +
 		"    	public static void subSort(int[] array, int left, int middle, int right) {\n" +
@@ -124,9 +124,9 @@ public enum FirstQuestion {
         	"    	for (int i = 0; i &lt; n - 1; i++) {\n" +
         	"        	int minIndex = i;\n" +
         	"        	for (int j = i + 1; j &lt; n; j++) {\n" +
-        	"            	if (arr[j] &lt; arr[minIndex]) {\n" +
-		"                	minIndex = j;\n" +
-		"            	}\n" +
+        	"            		if (arr[j] &lt; arr[minIndex]) {\n" +
+		"                		minIndex = j;\n" +
+		"            		}\n" +
 		"        	}\n" +
 		"        	int temp = arr[i];\n" +
 		"        	arr[i] = arr[minIndex];\n" +
@@ -147,11 +147,11 @@ public enum FirstQuestion {
 		"    	int n = arr.length;\n" +
 		"    	for (int i = 0; i &lt; n - 1; i++) {\n" +
 		"        	for (int j = 0; j &lt; n - i - 1; j++) {\n" +
-		"            	if (arr[j] &gt; arr[j + 1]) {\n" +
-		"                	int temp = arr[j];\n" +
-		"                	arr[j] = arr[j + 1];\n" +
-		"                	arr[j + 1] = temp;\n" +
-		"            	}\n" +
+		"            		if (arr[j] &gt; arr[j + 1]) {\n" +
+		"                		int temp = arr[j];\n" +
+		"                		arr[j] = arr[j + 1];\n" +
+		"                		arr[j + 1] = temp;\n" +
+		"            		}\n" +
 		"        	}\n" +
 		"    	}\n" +
 		"}" +

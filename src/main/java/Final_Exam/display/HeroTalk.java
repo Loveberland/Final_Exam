@@ -20,7 +20,7 @@ class HeroTalk {
 		layeredPane.setPreferredSize(new Dimension(1280, 960));
 
 		gameContentPanel = new JPanel() {
-			private Image backgroundImage = new ImageIcon(ImgRes.getPath(ImagePath.BG)).getImage();
+			private Image backgroundImage = new ImageIcon(ImgRes.getPath(ImagePath.FIGHT_BG)).getImage();
 
 			@Override
 			protected void paintComponent(Graphics g) {

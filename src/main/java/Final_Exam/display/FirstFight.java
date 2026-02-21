@@ -1,8 +1,14 @@
 package Final_Exam.display;
 
+import Final_Exam.display.*;
+import Final_Exam.display.QuestionBank;
+
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+
+import java.util.List;
+import java.util.Collections;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -107,65 +113,35 @@ public class FirstFight {
 	}
 
 	private static void fight(JFrame parentFrame) {
+
 		layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
 		parentFrame.repaint();
 
 		Nisit hero = new Nisit();
 		Boss san = new Boss("Santana");
 
-		// 1
-		JLabel fisrtQuestionLabel = new JLabel(FirstQuestion.DFS_Q.getQuestionHtml());
-		GetQuestAnsDialog firstQuestion = new GetQuestAnsDialog(parentFrame, "depth_first_search", fisrtQuestionLabel, hero, san);
-		firstQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
+		List<Question> questions = QuestionBank.getAllQuestions();
 
-		// 2
-		JLabel secondQuestionLabel = new JLabel(FirstQuestion.BINARY_SEARCH_Q.getQuestionHtml());
-		GetQuestAnsDialog secondQuestion = new GetQuestAnsDialog(parentFrame, "binary_search", secondQuestionLabel, hero, san);
-		secondQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
+		Collections.shuffle(questions); // ⭐ สุ่มข้อสอบ
 
-		// 3
-		JLabel thridQuestionLabel = new JLabel(FirstQuestion.INSERTION_SORT_Q.getQuestionHtml());
-		GetQuestAnsDialog thirdQuestion = new GetQuestAnsDialog(parentFrame, "insertion_sort", thridQuestionLabel, hero, san);
-		thirdQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
+		for (Question q : questions) {
 
-		// 4
-		JLabel fourthQuestionLabel = new JLabel(FirstQuestion.MERGE_SORT_Q.getQuestionHtml());
-		GetQuestAnsDialog fourthQuestion = new GetQuestAnsDialog(parentFrame, "merge_sort", fourthQuestionLabel, hero, san);
-		fourthQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
+			JLabel questionLabel = new JLabel(q.getQuestionHtml());
 
-		// 5
-		JLabel fifthQuestionLabel = new JLabel(FirstQuestion.SELECTION_SORT.getQuestionHtml());
-		GetQuestAnsDialog fifthQuestion = new GetQuestAnsDialog(parentFrame, "selection_sort", fifthQuestionLabel, hero, san);
-		fifthQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
+			GetQuestAnsDialog dialog =
+					new GetQuestAnsDialog(
+							parentFrame,
+							q.getCorrectAnswer(),
+							questionLabel,
+							hero,
+							san
+					);
 
-		// 6
-		JLabel sixthQuestionLabel = new JLabel(FirstQuestion.BUBBLE_SORT.getQuestionHtml());
-		GetQuestAnsDialog sixthQuestion = new GetQuestAnsDialog(parentFrame, "bubble_sort", sixthQuestionLabel, hero, san);
-		sixthQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
+			dialog.setVisible(true);
 
-		// 7
-		JLabel seventhQuestionLabel = new JLabel(FirstQuestion.QUICK_SORT.getQuestionHtml());
-		GetQuestAnsDialog seventhQuestion = new GetQuestAnsDialog(parentFrame, "quick_sort", seventhQuestionLabel, hero, san);
-		seventhQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
-
-		// 8
-		JLabel eigthQuestionLabel = new JLabel(FirstQuestion.BREADTH_FIRST_SEARCH.getQuestionHtml());
-		GetQuestAnsDialog eigthQuestion = new GetQuestAnsDialog(parentFrame, "breadth_first_search", eigthQuestionLabel, hero, san);
-		eigthQuestion.setVisible(true);
-		checkDie(hero, san, parentFrame);
-
-		// 9
-		JLabel ninthQuestionLabel = new JLabel(FirstQuestion.LINEAR_SEARCH.getQuestionHtml());
-		GetQuestAnsDialog ninthQuestion = new GetQuestAnsDialog(parentFrame, "linear_search", ninthQuestionLabel, hero, san);
-		ninthQuestion.setVisible(true);	
-		checkDie(hero, san, parentFrame);
+			if (hero.getHp() <= 0 || san.getHp() <= 0)
+				break;
+		}
 	}
 
 	private static void checkDie(Nisit hero, Boss san, JFrame parentFrame) {

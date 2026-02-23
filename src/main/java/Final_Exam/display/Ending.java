@@ -127,13 +127,18 @@ public class Ending {
         private void endingPage() {
                 layeredPane.removeAll();
 
-                JPanel centerPanel = new JPanel(new GridBagLayout());
+                JPanel centerPanel = new JPanel(new GridLayout(2, 1, 0,  0));
                 centerPanel.setBounds(0, 0, 1280, 960);
                 centerPanel.setBackground(Color.BLACK);
 
-                JLabel img = ImgPanel.createImgLabel(ImagePath.EASTEREGG, 654, 872);
-
+                JLabel img = ImgPanel.createImgLabel(ImagePath.EASTEREGG, 105, 140);
                 centerPanel.add(img);
+
+                JLabel toBe = new JLabel("To Be Continued...", SwingConstants.CENTER);
+                toBe.setFont(new Font("Arial", Font.BOLD, 60));
+                toBe.setForeground(Color.WHITE);
+                centerPanel.add(toBe);
+
                 layeredPane.add(centerPanel, JLayeredPane.DEFAULT_LAYER);
 
                 layeredPane.revalidate();

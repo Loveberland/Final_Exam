@@ -15,7 +15,8 @@ public enum ImagePath {
 	HERO("src/resources/image/Hero.png"),
 	SUN("src/resources/image/Sun.png"),
 	BG("src/resources/image/bg.png"),
-	FIGHT_BG("src/resources/image/fightBg.png");
+	FIGHT_BG("src/resources/image/fightBg.png"),
+	TOBE("src/resources/image/ToBeContinued.jpg");
 
     	private final String path;
 

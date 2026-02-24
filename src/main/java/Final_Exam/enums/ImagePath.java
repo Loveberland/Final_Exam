@@ -20,10 +20,20 @@ public enum ImagePath {
 
     	private final String path;
 
+	/**
+	 * Constructs an ImagePath enum constant with the specified file path.
+	 *
+	 * @param path The relative file path to the image.
+	 */
     	ImagePath(String path) {
         	this.path = path;
     	}
 
+	/**
+	 * Retrieves the file path for the corresponding image
+	 *
+	 * @return A string representing the file path of the image.
+	 */
     	public String getPath() {
         	return path;
     	}

@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * A custom modal dialog used to display sequential story messages to the user.
+ * Clicking on the dialog advances the text to the next message.
+ */
 class Dialogues extends JDialog {
 	private static final int WIDTH = 500;
 	private static final int HEIGHT = 200;
@@ -15,6 +19,13 @@ class Dialogues extends JDialog {
 
 	private Runnable onFinish;
 
+	/**
+	 * Constructs a new Dialogues window.
+	 *
+	 * @param parentFrame The parent JFrame to position the dialog against.
+	 * @param msgs        An array of strings representing the dialogue sequence.
+	 * @param onFinish    A Runnable to execute after the last message is dismissed.
+	 */
 	public Dialogues(JFrame parentFrame, String[] msgs, Runnable onFinish) {
 		super(parentFrame, true);
 		this.msgs = msgs;
@@ -62,6 +73,10 @@ class Dialogues extends JDialog {
 		txtArea.addMouseListener(advClick);
 	}
 
+	/**
+	 * Advances the dialogue to the next message. If there are no more messages,
+	 * the dialog is disposed and the onFinish callback is executed.
+	 */
 	private void nextMsg() {
 		curIdx++;
 		if (curIdx < msgs.length) {

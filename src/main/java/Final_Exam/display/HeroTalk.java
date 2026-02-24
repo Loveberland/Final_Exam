@@ -8,12 +8,23 @@ import javax.swing.event.AncestorListener;
 
 import Final_Exam.enums.ImagePath;
 
+
+/**
+ * Manages the pre-battle dialogue sequence for the hero character.
+ * Displays a series of dramatic lines before transitioning into the actual fight.
+ */
 class HeroTalk {
 	private static JPanel gameContentPanel;
 	private static JLayeredPane layeredPane;
 	private static PauseSystem pauseMenu;
 	private static JLabel hero;
 
+	/**
+     	 * Creates the panel where the hero's monologue occurs. Sets up the 
+     	 * background, hero image, key bindings, and story logic.
+     	 *
+     	 * @return The configured JPanel for the hero's dialogue sequence.
+     	 */
 	public static JPanel createGamePanel() {
 		JPanel mainWrapper = new JPanel(new BorderLayout());
 		layeredPane = new JLayeredPane();
@@ -51,6 +62,11 @@ class HeroTalk {
 		return mainWrapper;
 	}
 
+	/**
+     	 * Binds the Escape key to toggle the pause menu.
+     	 *
+     	 * @param panel The panel listening for the keypress.
+     	 */
 	private static void setupPauseKeyBinding(JPanel panel) {
 		InputMap inputMap = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "togglePause");
@@ -64,6 +80,12 @@ class HeroTalk {
 		});
 	}
 
+	/**
+     	 * Sets up the sequential story dialogue. When the text completes, 
+     	 * it triggers a transition to the `FirstFight` panel.
+     	 *
+     	 * @param panel The main panel to attach the load listener to.
+     	 */
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
                         "If this place is an experiment, then I\'ll be your mistake",

@@ -9,6 +9,11 @@ import java.util.Random;
 import Final_Exam.models.Boss;
 import Final_Exam.models.Nisit;
 
+/**
+ * A modal dialog that presents a question to the player and awaits their text input.
+ * It manages a timer, checks the player's answer against the correct answer, 
+ * and applies damage to either the Hero or the Boss based on the result.
+ */
 public class GetQuestAnsDialog extends JDialog {
         private final int WIDTH = 500;
         private final int HEIGHT = 600;
@@ -20,6 +25,15 @@ public class GetQuestAnsDialog extends JDialog {
         private int remainingTime;
         private boolean isPaused = false;
 
+	/**
+     	 * Constructs the answer dialog.
+     	 *
+     	 * @param parentFrame   The main window frame.
+     	 * @param correctAnswer The string representing the correct answer.
+     	 * @param questionLabel The JLabel containing the HTML question.
+     	 * @param hero          The Nisit player character.
+     	 * @param san           The Boss character.
+     	 */
         public GetQuestAnsDialog(JFrame parentFrame, String correctAnswer, JLabel questionLabel, Nisit hero, Boss san) {
                 super(parentFrame, "Answer the question...", true);
                 setSize(WIDTH, HEIGHT);

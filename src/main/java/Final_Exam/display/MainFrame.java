@@ -19,15 +19,25 @@ public class MainFrame {
 	private CardLayout cardLayout;
 	private JPanel mainContainer;
 
+	/**
+	 * Constructs a new MainFrame.
+  	 * Initializes the window frame properties and builds the component.
+	 */
 	public MainFrame() {
 		initializeFrame();
 		addComponents();
 	}
 
+	/**
+	 * Make main frame visible to the user.
+	 */
 	public void show() {
 		frame.setVisible(true);
 	}
 
+	/**
+         * Configures the core properties of the JFrame, such as its size
+ 	 */
 	private void initializeFrame() {
 		frame = new JFrame(WINDOW_TITLE);
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -37,23 +47,35 @@ public class MainFrame {
 		frame.setResizable(false);
 	}
 
+	/**
+	 * Add component to main frame
+	 */
 	private void addComponents() {
 		initCardLayout();
 	}
 
+	/**
+	 * Initializes the CardLayout and the main container. 
+	 * Sets up the navigation logic (ActionListeners) to switch between the 
+	 * Menu, Setting, and Game panels. Also applies a custom background image 
+	 * that renders behind the transparent main container.
+	 */
 	private void initCardLayout() {
 		cardLayout = new CardLayout();
 		mainContainer = new JPanel(cardLayout);
 		mainContainer.setOpaque(false);
 
+		// ActionListener to switch to the setting panel
 		ActionListener switchToSetting = e -> {
 			cardLayout.show(mainContainer, "Setting");
 		};
 
+		// ActionListener to switch to the main menu panel
 		ActionListener switchToMenu = e -> {
 			cardLayout.show(mainContainer, "Menu");
 		};
 
+		// ActionListener to switch to the game panel
 		ActionListener switchToGame = e -> {
 			cardLayout.show(mainContainer, "Game");
 		};
@@ -83,6 +105,7 @@ public class MainFrame {
 
 		frame.add(bgPanel, BorderLayout.CENTER);
 
+		// Set the initial screen to main menu
 		cardLayout.show(mainContainer, "Menu");
 	}
 }

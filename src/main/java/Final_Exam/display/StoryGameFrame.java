@@ -8,11 +8,21 @@ import javax.swing.event.AncestorListener;
 
 import Final_Exam.enums.ImagePath;
 
+/**
+ * Manages the primary game screen, layering the background, handling the 
+ * introductory story dialogue sequence, and integrating the pause menu system.
+ */
 class StoryGameFrame {
 	private static JPanel gameContentPanel;
 	private static JLayeredPane layeredPane;
 	private static PauseSystem pauseMenu;
 
+	/**
+	 * Creates and assembles the main game panel, including the background,
+	 * layered panes, key bindings, and story initializations.
+	 *
+	 * @return A fully configured JPanel ready to be displayed as the main game view.
+	 */
 	public static JPanel createGamePanel() {
 		JPanel mainWrapper = new JPanel(new BorderLayout());
 		layeredPane = new JLayeredPane();
@@ -46,6 +56,12 @@ class StoryGameFrame {
 		return mainWrapper;
 	}
 
+	/**
+	 * Sets up a key binding that listens for the 'ESCAPE' key to toggle 
+	 * the visibility of the pause menu overlay.
+	 *
+	 * @param panel The main wrapper panel to bind the key event to.
+	 */
 	private static void setupPauseKeyBinding(JPanel panel) {
 		InputMap inputMap = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "togglePause");
@@ -59,6 +75,13 @@ class StoryGameFrame {
 		});
 	}
 
+	/**
+	 * Configures the introductory story sequence to trigger when the 
+	 * panel is added to the screen hierarchy. It displays sequential 
+	 * dialogue boxes and transitions to the HeroTalk panel when complete.
+	 *
+	 * @param panel The main wrapper panel to attach the listener to.
+	 */
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
 			"On the first day of the semester, a young male student stepped into one of the country\'s top universities, a place known to \"create geniuses\" and \"swallow the weak.\"\n" +

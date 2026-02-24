@@ -13,7 +13,13 @@ public class ImgRes {
 	private ImgRes() {
 		throw new UnsupportedOperationException("Utility class cannot be instantiated");
 	}
-
+	
+	/**
+	 * Retrieves the relative file path as a string for a given ImagePath enum.
+	 *
+	 * @param imagePath The enum constant representing the desired image.
+	 * @return A string representation of the file path.
+	 */
 	public static String getPath(ImagePath imagePath) {
 		return imagePath.getPath();
 	}

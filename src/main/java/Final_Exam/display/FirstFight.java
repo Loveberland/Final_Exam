@@ -15,6 +15,11 @@ import Final_Exam.enums.FirstQuestion;
 import Final_Exam.models.Boss;
 import Final_Exam.models.Nisit;
 
+/**
+ * Manages the primary battle logic and UI for the game's first boss fight.
+ * This class orchestrates character instantiation (Hero vs. Boss), pulls questions 
+ * from the QuestionBank, and displays the battle sequences in a loop until someone dies.
+ */
 public class FirstFight {
 	private static JPanel gameContentPanel;
 	private static JLayeredPane layeredPane;
@@ -22,6 +27,13 @@ public class FirstFight {
 	private static JLabel hero;
         private static JLabel boss;
 
+	/**
+	 * Creates and initializes the main game panel for the first fight sequence.
+	 * Configures the background, characters, layered pane, and attaches an ancestor
+	 * listener to start the battle sequence when the panel is displayed.
+	 *
+	 * @return A configured JPanel representing the battle screen.
+	 */
 	public static JPanel createGamePanel() {
 		JPanel mainWrapper = new JPanel(new BorderLayout());
 		layeredPane = new JLayeredPane();
@@ -63,6 +75,12 @@ public class FirstFight {
 		return mainWrapper;
 	}
 
+	/**
+	 * Sets up a key binding listening for the 'ESCAPE' key to toggle 
+	 * the visibility of the pause menu.
+	 *
+	 * @param panel The main wrapper panel to bind the key event to.
+	 */
 	private static void setupPauseKeyBinding(JPanel panel) {
 		InputMap inputMap = panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), "togglePause");
@@ -76,6 +94,12 @@ public class FirstFight {
 		});
 	}
 
+	/**
+	 * Configures the introductory sequence that triggers exactly when the 
+	 * panel is added to the screen hierarchy.
+	 *
+	 * @param panel The main wrapper panel to attach the listener to.
+	 */
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
                         "You\'ve made it this far… how interesting. Hundreds of students fell before they ever saw my face. No matter how strong we think we are… in the end, everyone breaks. And I will be your final lesson.",
@@ -110,6 +134,12 @@ public class FirstFight {
 		});
 	}
 
+	/**
+	 * Initiates the main battle loop. Randomizes questions from the question bank 
+	 * and presents them to the player sequentially until someone's HP drops to 0.
+	 *
+	 * @param parentFrame The main application window frame.
+	 */
 	private static void fight(JFrame parentFrame) {
 
 		layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
@@ -143,6 +173,13 @@ public class FirstFight {
 		checkDie(hero, san, parentFrame);
 	}
 
+	/**
+	 * Evaluates the results of the fight and transitions to the ending screen.
+	 *
+	 * @param hero        The player character object.
+	 * @param san         The boss character object.
+	 * @param parentFrame The main application window frame.
+	 */
 	private static void checkDie(Nisit hero, Boss san, JFrame parentFrame) {
 		if (hero.getHp() <= 0) new Ending(san, parentFrame);
 		else if (san.getHp() <= 0) new Ending(hero, parentFrame);

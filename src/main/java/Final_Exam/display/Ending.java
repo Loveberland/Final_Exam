@@ -11,12 +11,24 @@ import javax.swing.event.AncestorListener;
 
 import java.awt.*;
 
+/**
+ * Handles the post-battle sequence and transitions the game to the ending screen.
+ * Displays a "To Be Continued..." graphic along with a hidden Easter egg.
+ */
 public class Ending {
         private static JPanel gameContentPanel;
 	private static JLayeredPane layeredPane;
         private static JLabel hero;
         private static JLabel boss;
 
+	/**
+	 * Constructs the Ending sequence, generating the required UI components 
+	 * and attaching them to the parent frame.
+	 *
+	 * @param ch          The character object representing the loser of the battle 
+	 * (used to determine which ending dialogue plays).
+	 * @param parentFrame The main application window frame.
+	 */
         public Ending(Character ch, JFrame parentFrame) {
                 JPanel ending = addComponent(ch);
                 parentFrame.setContentPane(ending);
@@ -24,6 +36,13 @@ public class Ending {
 		ending.requestFocusInWindow();
         }
 
+	/**
+	 * Creates and assembles the base panels, backgrounds, and registers 
+	 * the listener to trigger the ending dialogues.
+	 *
+	 * @param ch The character that lost the battle.
+	 * @return A fully assembled JPanel ready for the ending sequence.
+	 */
         private JPanel addComponent(Character ch) {
                 JPanel mainWrapper = new JPanel(new BorderLayout());
 		layeredPane = new JLayeredPane();
@@ -61,6 +80,13 @@ public class Ending {
                 return mainWrapper;
         }
 
+	/**
+	 * Configures the dialogue sequence that triggers when the panel is shown.
+	 * When the dialogue completes, it triggers the final `endingPage()` rendering.
+	 *
+	 * @param panel The main wrapper panel.
+	 * @param story An array of strings representing the ending dialogue lines.
+	 */
         private void setupStoryLogic(JPanel panel, Character ch) {
                 if (ch instanceof Nisit) {
                         String[] story = {
@@ -124,6 +150,10 @@ public class Ending {
                 }
 	}
 
+	/**
+	 * Clears the screen and draws the final "To Be Continued..." splash screen,
+	 * optionally incorporating a hidden Easter Egg image.
+	 */
         private void endingPage() {
                 layeredPane.removeAll();
 

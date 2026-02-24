@@ -232,10 +232,20 @@ public enum FirstQuestion {
 
 	private final String questionHtml;
 
+	/**
+	 * Constructs a FirstQuestion enum constant with the specified HTML content.
+	 *
+	 * @param questionHtml The Html string containing the question instructions.	
+	 */
 	FirstQuestion(String questionHtml) {
 		this.questionHtml = questionHtml;
 	}
 
+	/**
+	 * Retrieves the HTML-formatted string for the question.
+	 *
+	 * @return the Html string containing the question content.
+	 */
 	public String getQuestionHtml() {
 		return questionHtml;
 	}

@@ -3,6 +3,10 @@ package Final_Exam.display;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Manages the heads-up display (HUD) during a battle sequence, specifically 
+ * rendering and updating the HP bars for both the hero and the boss.
+ */
 public class WhenFight {
 	private static final int WIDTH = 1280;
 	private static final int HEIGHT = 960;
@@ -14,6 +18,11 @@ public class WhenFight {
 	private static HpBar hero;
 	private static HpBar boss;
 
+	/**
+     	 * Creates and configures the panel containing the health bars.
+     	 *
+     	 * @return A transparent JPanel containing the positioned HP bars.
+     	 */
 	public static JPanel createGamePanel() {
 		JPanel hpBarPanel = new JPanel();
 		hpBarPanel.setLayout(null);
@@ -31,7 +40,12 @@ public class WhenFight {
 
 		return hpBarPanel;
 	}
-
+	
+	/**
+     	 * Updates the hero's displayed HP, ensuring it doesn't drop below 0.
+     	 *
+     	 * @param hp The new current HP value for the hero.
+     	 */
 	public static void updateHeroHp(int hp) {
 		if (hp < 0) hp = 0;
 		if (hero != null) {
@@ -39,6 +53,11 @@ public class WhenFight {
 		}
 	}
 
+	/**
+     	 * Updates the boss's displayed HP, ensuring it doesn't drop below 0.
+     	 *
+     	 * @param hp The new current HP value for the boss.
+     	 */
 	public static void updateBossHp(int hp) {
 		if (hp < 0) hp = 0;
 		if (boss != null) {

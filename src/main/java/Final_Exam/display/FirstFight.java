@@ -11,21 +11,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import Final_Exam.enums.ImagePath;
-import Final_Exam.enums.FirstQuestion;
 import Final_Exam.models.Boss;
 import Final_Exam.models.Nisit;
 
 /**
  * Manages the primary battle logic and UI for the game's first boss fight.
- * This class orchestrates character instantiation (Hero vs. Boss), pulls questions 
- * from the QuestionBank, and displays the battle sequences in a loop until someone dies.
+ * This class orchestrates character instantiation (Hero vs. Boss), pulls
+ * questions
+ * from the QuestionBank, and displays the battle sequences in a loop until
+ * someone dies.
  */
 public class FirstFight {
 	private static JPanel gameContentPanel;
 	private static JLayeredPane layeredPane;
 	private static PauseSystem pauseMenu;
 	private static JLabel hero;
-        private static JLabel boss;
+	private static JLabel boss;
 
 	/**
 	 * Creates and initializes the main game panel for the first fight sequence.
@@ -51,7 +52,7 @@ public class FirstFight {
 			}
 		};
 		gameContentPanel.setLayout(null);
-		gameContentPanel.setBounds(-1, 0, 1280, 960);
+		gameContentPanel.setBounds(0, 0, 1280, 960);
 
 		pauseMenu = new PauseSystem(1280, 960, e -> {
 			System.out.println("Game Resume");
@@ -61,9 +62,9 @@ public class FirstFight {
 		hero.setBounds(150, 200, 500, 400);
 		gameContentPanel.add(hero, BorderLayout.WEST);
 
-                boss = ImgPanel.createImgLabel(ImagePath.SUN, 100, 300);
-                boss.setBounds(800, 200, 100, 400);
-                gameContentPanel.add(boss, BorderLayout.EAST);
+		boss = ImgPanel.createImgLabel(ImagePath.SUN, 100, 300);
+		boss.setBounds(800, 200, 100, 400);
+		gameContentPanel.add(boss, BorderLayout.EAST);
 
 		layeredPane.add(gameContentPanel, JLayeredPane.DEFAULT_LAYER);
 		layeredPane.add(pauseMenu, JLayeredPane.PALETTE_LAYER);
@@ -76,7 +77,7 @@ public class FirstFight {
 	}
 
 	/**
-	 * Sets up a key binding listening for the 'ESCAPE' key to toggle 
+	 * Sets up a key binding listening for the 'ESCAPE' key to toggle
 	 * the visibility of the pause menu.
 	 *
 	 * @param panel The main wrapper panel to bind the key event to.
@@ -95,16 +96,16 @@ public class FirstFight {
 	}
 
 	/**
-	 * Configures the introductory sequence that triggers exactly when the 
+	 * Configures the introductory sequence that triggers exactly when the
 	 * panel is added to the screen hierarchy.
 	 *
 	 * @param panel The main wrapper panel to attach the listener to.
 	 */
 	private static void setupStoryLogic(JPanel panel) {
 		String[] story = {
-                        "You\'ve made it this far… how interesting. Hundreds of students fell before they ever saw my face. No matter how strong we think we are… in the end, everyone breaks. And I will be your final lesson.",
-			"How bold of you to walk up to me without kneeling. Do you think you\'re some kind of guardian? There are no guardians here—only survivors… and the erased.",
-			"Remember this well: after today, your name will be nothing but a zero. And I will be your final lesson."
+				"You\'ve made it this far… how interesting. Hundreds of students fell before they ever saw my face. No matter how strong we think we are… in the end, everyone breaks. And I will be your final lesson.",
+				"How bold of you to walk up to me without kneeling. Do you think you\'re some kind of guardian? There are no guardians here—only survivors… and the erased.",
+				"Remember this well: after today, your name will be nothing but a zero. And I will be your final lesson."
 		};
 
 		panel.addAncestorListener(new AncestorListener() {
@@ -119,7 +120,8 @@ public class FirstFight {
 							Dialogues intro = new Dialogues(parentFrame, story, () -> {
 								fight(parentFrame);
 							});
-							intro.setVisible(true); }
+							intro.setVisible(true);
+						}
 					});
 				}
 
@@ -127,15 +129,17 @@ public class FirstFight {
 			}
 
 			@Override
-			public void ancestorRemoved(AncestorEvent event) {}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
 
-			public void ancestorMoved(AncestorEvent event) {}
+			public void ancestorMoved(AncestorEvent event) {
+			}
 
 		});
 	}
 
 	/**
-	 * Initiates the main battle loop. Randomizes questions from the question bank 
+	 * Initiates the main battle loop. Randomizes questions from the question bank
 	 * and presents them to the player sequentially until someone's HP drops to 0.
 	 *
 	 * @param parentFrame The main application window frame.
@@ -150,20 +154,18 @@ public class FirstFight {
 
 		List<Question> questions = QuestionBank.getAllQuestions();
 
-		Collections.shuffle(questions); 
+		Collections.shuffle(questions);
 
 		for (Question q : questions) {
 
 			JLabel questionLabel = new JLabel(q.getQuestionHtml());
 
-			GetQuestAnsDialog dialog =
-					new GetQuestAnsDialog(
-							parentFrame,
-							q.getCorrectAnswer(),
-							questionLabel,
-							hero,
-							san
-					);
+			GetQuestAnsDialog dialog = new GetQuestAnsDialog(
+					parentFrame,
+					q.getCorrectAnswer(),
+					questionLabel,
+					hero,
+					san);
 
 			dialog.setVisible(true);
 
@@ -181,7 +183,9 @@ public class FirstFight {
 	 * @param parentFrame The main application window frame.
 	 */
 	private static void checkDie(Nisit hero, Boss san, JFrame parentFrame) {
-		if (hero.getHp() <= 0) new Ending(san, parentFrame);
-		else if (san.getHp() <= 0) new Ending(hero, parentFrame);
+		if (hero.getHp() <= 0)
+			new Ending(san, parentFrame);
+		else if (san.getHp() <= 0)
+			new Ending(hero, parentFrame);
 	}
 }

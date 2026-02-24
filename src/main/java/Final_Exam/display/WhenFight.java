@@ -4,12 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Manages the heads-up display (HUD) during a battle sequence, specifically 
+ * Manages the heads-up display (HUD) during a battle sequence, specifically
  * rendering and updating the HP bars for both the hero and the boss.
  */
 public class WhenFight {
 	private static final int WIDTH = 1280;
-	private static final int HEIGHT = 960;
 
 	private static final int BAR_WIDTH = 250;
 	private static final int BAR_HEIGHT = 40;
@@ -19,10 +18,10 @@ public class WhenFight {
 	private static HpBar boss;
 
 	/**
-     	 * Creates and configures the panel containing the health bars.
-     	 *
-     	 * @return A transparent JPanel containing the positioned HP bars.
-     	 */
+	 * Creates and configures the panel containing the health bars.
+	 *
+	 * @return A transparent JPanel containing the positioned HP bars.
+	 */
 	public static JPanel createGamePanel() {
 		JPanel hpBarPanel = new JPanel();
 		hpBarPanel.setLayout(null);
@@ -40,26 +39,28 @@ public class WhenFight {
 
 		return hpBarPanel;
 	}
-	
+
 	/**
-     	 * Updates the hero's displayed HP, ensuring it doesn't drop below 0.
-     	 *
-     	 * @param hp The new current HP value for the hero.
-     	 */
+	 * Updates the hero's displayed HP, ensuring it doesn't drop below 0.
+	 *
+	 * @param hp The new current HP value for the hero.
+	 */
 	public static void updateHeroHp(int hp) {
-		if (hp < 0) hp = 0;
+		if (hp < 0)
+			hp = 0;
 		if (hero != null) {
 			hero.updateHp(hp);
 		}
 	}
 
 	/**
-     	 * Updates the boss's displayed HP, ensuring it doesn't drop below 0.
-     	 *
-     	 * @param hp The new current HP value for the boss.
-     	 */
+	 * Updates the boss's displayed HP, ensuring it doesn't drop below 0.
+	 *
+	 * @param hp The new current HP value for the boss.
+	 */
 	public static void updateBossHp(int hp) {
-		if (hp < 0) hp = 0;
+		if (hp < 0)
+			hp = 0;
 		if (boss != null) {
 			boss.updateHp(hp);
 		}

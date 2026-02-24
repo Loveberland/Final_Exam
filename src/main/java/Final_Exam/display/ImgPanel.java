@@ -9,7 +9,7 @@ import java.awt.*;
  * Component for displaying the game logo.
  */
 public class ImgPanel {
-	
+
 	/**
 	 * Creates and returns a JLabel containing the game logo.
 	 *

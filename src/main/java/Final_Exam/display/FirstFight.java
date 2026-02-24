@@ -115,7 +115,7 @@ public class FirstFight {
 		layeredPane.add(new WhenFight().createGamePanel(), Integer.valueOf(1));
 		parentFrame.repaint();
 
-		Nisit hero = new Nisit();
+		Nisit hero = new Nisit("Kittipong");
 		Boss san = new Boss("Santana");
 
 		List<Question> questions = QuestionBank.getAllQuestions();
